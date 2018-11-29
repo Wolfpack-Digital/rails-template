@@ -83,3 +83,9 @@ production:
   database: rails-starter-kit_production
   username: rails-starter-kit
   password: <%= ENV['RAILS-STARTER-KIT_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: rails-starter-kit_staging
+  username: rails-starter-kit
+  password: <%= ENV['RAILS-STARTER-KIT_DATABASE_PASSWORD'] %>
