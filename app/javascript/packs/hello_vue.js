@@ -9,13 +9,13 @@ import Vue from 'vue'
 import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const el = document.body.appendChild(document.createElement('hello'))
   const app = new Vue({
-    el,
-    render: h => h(App)
+    el: '#hello',
+    data: {
+      message: 'Can you say hello?'
+    },
+    components: { App }
   })
-
-  console.log(app)
 })
 
 
