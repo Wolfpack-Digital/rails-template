@@ -73,7 +73,7 @@ def add_template_repository_to_source_path
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       '--quiet',
-      'https://github.com/Wolfpack-Digital/rails-starter-kit.git',
+      'https://github.com/Wolfpack-Digital/rails-template.git',
       tempdir
     ].map(&:shellescape).join(' ')
 
