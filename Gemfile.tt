@@ -21,10 +21,6 @@ gem "sass-rails"<%= gemfile_requirement("sass-rails") %>
 gem "sidekiq", ">= 4.2.0"
 gem "turbolinks"<%= gemfile_requirement("turbolinks") || ', ">= 2.5.2"' %>
 
-group :production, :staging do
-  gem "postmark-rails"
-end
-
 group :development do
   gem "annotate", ">= 2.5.0"
   gem "awesome_print"
@@ -55,12 +51,5 @@ group :development do
 end
 
 group :test do
-  gem "capybara"<%= gemfile_requirement("capybara") %>
-  gem "chromedriver-helper"
-  gem "launchy"
-  gem "minitest-ci", ">= 3.3.0", require: false
-  gem "mocha", ">= 1.4.0"
-  gem "selenium-webdriver"<%= gemfile_requirement("selenium-webdriver") %>
-  gem "shoulda-context"
   gem "shoulda-matchers", ">= 3.0.1"
 end

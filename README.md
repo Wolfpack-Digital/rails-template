@@ -1,8 +1,8 @@
-# Wolfpack-Digital/rails-starter-kit
+# wolfpack-digital/rails-starter-kit
 
 ## Description
 
-This is the application template used for new projects at Wolfpack-Digital. It includes best-practices, documentation and
+Ruby on Rails application template used by [Wolfpack-Digital][].
 
 ## Requirements
 
@@ -79,21 +79,8 @@ The template will perform the following steps:
 * Security
     * [brakeman][] and [bundler-audit][] – detect security vulnerabilities
 * Testing
-    * [mocha][] – excellent mocking for Test::Unit/Minitest
     * [simplecov][] – code coverage reports
     * [shoulda][] – shortcuts for common ActiveRecord tests
-
-#### Postmark
-
-I like to use [Postmark][] for transactional email, and so I've included the [postmark-rails][] gem and configured it in `environments/production.rb`. Make sure to sign up for a Postmark account to get an API key, or switch to your own preferred email provider before deploying your app.
-
-#### Bootstrap integration (optional)
-
-[Bootstrap][]-related features are opt-in. To apply these to your project, answer "yes" when prompted.
-
-* Bootstrap-themed scaffold templates
-* Application layout that includes Bootstrap-style navbar and boilerplate
-* View helpers for generating common Bootstrap markup
 
 #### Other tweaks that patch over some Rails shortcomings
 
@@ -114,6 +101,9 @@ This temporary directory is then added to the `source_paths` of the Rails genera
 
 Rails generators are very lightly documented; what you’ll find is that most of the heavy lifting is done by [Thor][]. The most common methods used by this template are Thor’s `copy_file`, `template`, and `gsub_file`. You can dig into the well-organized and well-documented [Thor source code][thor] to learn more.
 
+Inspired by [rails-template][]
+
+[Wolfpack-Digital]:http://wolfpack-digital.com
 [active_type]:https://github.com/makandra/active_type
 [sidekiq]:http://sidekiq.org
 [dotenv]:https://github.com/bkeepers/dotenv
@@ -127,14 +117,11 @@ Rails generators are very lightly documented; what you’ll find is that most of
 [xray-rails]:https://github.com/brentd/xray-rails
 [unicorn]:http://unicorn.bogomips.org
 [unicorn-worker-killer]:https://github.com/kzk/unicorn-worker-killer
-[Postmark]:http://postmarkapp.com
-[postmark-rails]:http://www.rubydoc.info/gems/postmark-rails/0.12.0
 [brakeman]:https://github.com/presidentbeef/brakeman
 [bundler-audit]:https://github.com/rubysec/bundler-audit
-[mocha]:https://github.com/freerange/mocha
 [shoulda]:https://github.com/thoughtbot/shoulda
 [simplecov]:https://github.com/colszowka/simplecov
-[Bootstrap]:http://getbootstrap.com
 [application templates]:http://guides.rubyonrails.org/generators.html#application-templates
 [template.rb]: template.rb
 [thor]: https://github.com/erikhuda/thor
+[rails-template]: https://github.com/mattbrictson/rails-template
