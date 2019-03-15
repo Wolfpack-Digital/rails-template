@@ -1,4 +1,4 @@
-RAILS_REQUIREMENT = "~> 5.2.0".freeze
+RAILS_REQUIREMENT = '~> 5.2.0'.freeze
 
 def apply_template!
   assert_minimum_rails_version
@@ -6,34 +6,34 @@ def apply_template!
   assert_postgresql
   add_template_repository_to_source_path
 
-  template "Gemfile.tt", force: true
+  template 'Gemfile.tt', force: true
 
-  template "README.md.tt", force: true
-  remove_file "README.rdoc"
+  template 'README.md.tt', force: true
+  remove_file 'README.rdoc'
 
-  template "example.env.tt"
-  copy_file "editorconfig", ".editorconfig"
-  copy_file "gitignore", ".gitignore", force: true
-  copy_file "overcommit.yml", ".overcommit.yml"
-  template "ruby-version.tt", ".ruby-version", force: true
-  copy_file "simplecov", ".simplecov"
+  template 'example.env.tt'
+  copy_file 'editorconfig', '.editorconfig'
+  copy_file 'gitignore', '.gitignore', force: true
+  copy_file 'overcommit.yml', '.overcommit.yml'
+  template 'ruby-version.tt', '.ruby-version', force: true
+  copy_file 'simplecov', '.simplecov'
 
-  copy_file "Guardfile"
-  copy_file "Procfile"
+  copy_file 'Guardfile'
+  copy_file 'Procfile'
 
-  apply "Rakefile.rb"
-  apply "app/template.rb"
-  apply "bin/template.rb"
-  apply "circleci/template.rb"
-  apply "config/template.rb"
-  apply "doc/template.rb"
-  apply "lib/template.rb"
-  # apply "test/template.rb" TODO: Replace with rspec
+  apply 'Rakefile.rb'
+  apply 'app/template.rb'
+  apply 'bin/template.rb'
+  apply 'circleci/template.rb'
+  apply 'config/template.rb'
+  apply 'doc/template.rb'
+  apply 'lib/template.rb'
+  apply 'spec/template.rb'
 
   git :init unless preexisting_git_repo?
-  empty_directory ".git/safe"
+  empty_directory '.git/safe'
 
-  run_with_clean_bundler_env "bin/setup"
+  run_with_clean_bundler_env 'bin/setup'
   create_initial_migration
   generate_spring_binstubs
 
@@ -43,21 +43,21 @@ def apply_template!
   ]
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
 
-  template "rubocop.yml.tt", ".rubocop.yml"
+  template 'rubocop.yml.tt', '.rubocop.yml'
   run_rubocop_autocorrections
 
   unless any_local_git_commits?
-    git add: "-A ."
+    git add: '-A .'
     git commit: "-n -m 'Set up project'"
     if git_repo_specified?
       git remote: "add origin #{git_repo_url.shellescape}"
-      git push: "-u origin --all"
+      git push: '-u origin --all'
     end
   end
 end
 
-require "fileutils"
-require "shellwords"
+require 'fileutils'
+require 'shellwords'
 
 # Add this template directory to source_paths so that Thor actions like
 # copy_file and template resolve against our source files. If this file was
@@ -65,14 +65,14 @@ require "shellwords"
 # In that case, use `git clone` to download them to a local temporary dir.
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
-    require "tmpdir"
-    source_paths.unshift(tempdir = Dir.mktmpdir("rails-template-"))
+    require 'tmpdir'
+    source_paths.unshift(tempdir = Dir.mktmpdir('rails-template-'))
     at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
-      "--quiet",
-      "https://github.com/Wolfpack-Digital/rails-starter-kit.git",
+      '--quiet',
+      'https://github.com/Wolfpack-Digital/rails-starter-kit.git',
       tempdir
-    ].map(&:shellescape).join(" ")
+    ].map(&:shellescape).join(' ')
 
     if (branch = __FILE__[%r{rails-template/(.+)/template.rb}, 1])
       Dir.chdir(tempdir) { git checkout: branch }
@@ -98,64 +98,66 @@ def assert_valid_options
     skip_gemfile: false,
     skip_bundle: false,
     skip_git: false,
-    skip_test_unit: false,
     edge: false
   }
   valid_options.each do |key, expected|
     next unless options.key?(key)
+
     actual = options[key]
     unless actual == expected
-      fail Rails::Generators::Error, "Unsupported option: #{key}=#{actual}"
+      raise Rails::Generators::Error, "Unsupported option: #{key}=#{actual}"
     end
   end
 end
 
 def assert_postgresql
-  return if IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
-  fail Rails::Generators::Error,
-       "This template requires PostgreSQL, "\
-       "but the pg gem isn’t present in your Gemfile."
+  return if IO.read('Gemfile') =~ /^\s*gem ['"]pg['"]/
+
+  raise Rails::Generators::Error,
+        'This template requires PostgreSQL, '\
+        'but the pg gem isn’t present in your Gemfile.'
 end
 
 def git_repo_url
   @git_repo_url ||=
-    ask_with_default("What is the git remote URL for this project?", :blue, "skip")
+    ask_with_default('What is the git remote URL for this project?', :blue, 'skip')
 end
 
 def production_hostname
   @production_hostname ||=
-    ask_with_default("Production hostname?", :blue, "example.com")
+    ask_with_default('Production hostname?', :blue, 'example.com')
 end
 
 def staging_hostname
   @staging_hostname ||=
-    ask_with_default("Staging hostname?", :blue, "staging.example.com")
+    ask_with_default('Staging hostname?', :blue, 'staging.example.com')
 end
 
 def gemfile_requirement(name)
-  @original_gemfile ||= IO.read("Gemfile")
+  @original_gemfile ||= IO.read('Gemfile')
   req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d\.\w'"]*)?.*$/, 1]
-  req && req.gsub("'", %(")).strip.sub(/^,\s*"/, ', "')
+  req && req.tr("'", %(")).strip.sub(/^,\s*"/, ', "')
 end
 
 def ask_with_default(question, color, default)
   return default unless $stdin.tty?
-  question = (question.split("?") << " [#{default}]?").join
+
+  question = (question.split('?') << " [#{default}]?").join
   answer = ask(question, color)
   answer.to_s.strip.empty? ? default : answer
 end
 
 def git_repo_specified?
-  git_repo_url != "skip" && !git_repo_url.strip.empty?
+  git_repo_url != 'skip' && !git_repo_url.strip.empty?
 end
 
 def preexisting_git_repo?
-  @preexisting_git_repo ||= (File.exist?(".git") || :nope)
+  @preexisting_git_repo ||= (File.exist?('.git') || :nope)
   @preexisting_git_repo == true
 end
 
 def any_local_git_commits?
-  system("git log &> /dev/null")
+  system('git log &> /dev/null')
 end
 
 def run_with_clean_bundler_env(cmd)
@@ -171,13 +173,14 @@ def run_with_clean_bundler_env(cmd)
 end
 
 def run_rubocop_autocorrections
-  run_with_clean_bundler_env "bin/rubocop -a --fail-level A > /dev/null || true"
+  run_with_clean_bundler_env 'bin/rubocop -a --fail-level A > /dev/null || true'
 end
 
 def create_initial_migration
-  return if Dir["db/migrate/**/*.rb"].any?
-  run_with_clean_bundler_env "bin/rails generate migration initial_migration"
-  run_with_clean_bundler_env "bin/rake db:migrate"
+  return if Dir['db/migrate/**/*.rb'].any?
+
+  run_with_clean_bundler_env 'bin/rails generate migration initial_migration'
+  run_with_clean_bundler_env 'bin/rake db:migrate'
 end
 
 apply_template!

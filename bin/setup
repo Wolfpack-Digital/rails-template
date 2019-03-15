@@ -2,30 +2,29 @@
 
 def setup!
   within_project_root do
-    test "ruby -v" => ruby_version
-    run  "gem install bundler --no-document --conservative"
-    run  "bundle install"
-    run  "bin/yarn install" if File.exist?("yarn.lock")
-    run  "bundle exec overcommit --install"
-    copy "example.env"
-    copy "config/database.example.yml"
+    test 'ruby -v' => ruby_version
+    run  'gem install bundler --no-document --conservative'
+    run  'bundle install'
+    run  'bin/yarn install' if File.exist?('yarn.lock')
+    run  'bundle exec overcommit --install'
+    copy 'example.env'
+    copy 'config/database.example.yml'
     test_local_env_contains_required_keys
-    run  "bin/rake db:create:all"
-    run  "bin/rake db:migrate"
-    run  "bin/rake db:seed"
+    run  'bin/rake db:create:all'
+    run  'bin/rake db:migrate'
+    run  'bin/rake db:seed'
   end
 end
 
-
-require "fileutils"
+require 'fileutils'
 begin
-  require "highline"
+  require 'highline'
 rescue LoadError
   # If highline is missing, we'll gracefully omit ansi color output
 end
 
 def within_project_root(&block)
-  Dir.chdir(File.expand_path("../..", __FILE__), &block)
+  Dir.chdir(File.expand_path('..', __dir__), &block)
 end
 
 def test(opts)
@@ -40,7 +39,7 @@ end
 
 def ruby_version
   @ruby_version ||= begin
-    IO.read(".ruby-version").strip
+    IO.read('.ruby-version').strip
   end
 end
 
@@ -48,18 +47,19 @@ def run(command)
   log(:blue, "run  #{command}") do
     shell = "#{command} > /dev/null"
     with_clean_bundler_env do
-      system(shell) or die("#{command} exited with non-zero status")
+      system(shell) || die("#{command} exited with non-zero status")
     end
   end
 end
 
 def with_clean_bundler_env(&block)
-  return block.call unless defined?(Bundler)
+  return yield unless defined?(Bundler)
+
   Bundler.with_clean_env(&block)
 end
 
 def copy(example_path)
-  copy_path = example_path.sub(/\.?example/, "")
+  copy_path = example_path.sub(/\.?example/, '')
   return if File.exist?(copy_path)
 
   log(:magenta, "copy #{example_path} → #{copy_path}") do
@@ -70,23 +70,21 @@ end
 def test_local_env_contains_required_keys
   keys = ->(f) { IO.readlines(f).map { |l| l[/^([^#\s][^=\s]*)/, 1] }.compact }
 
-  log(:yellow, "test .env contents") do
-    missing = keys["example.env"] - keys[".env"]
-    if missing.any?
-      die("Your .env file is missing #{missing.join(', ')}")
-    end
+  log(:yellow, 'test .env contents') do
+    missing = keys['example.env'] - keys['.env']
+    die("Your .env file is missing #{missing.join(', ')}") if missing.any?
   end
 end
 
-def log(color, message, out=$stdout, &block)
+def log(color, message, out = $stdout)
   if defined?(HighLine::String)
-    message.sub!(/^(\S*)/) { HighLine::String.new($1).public_send(color) }
+    message.sub!(/^(\S*)/) { HighLine::String.new(Regexp.last_match(1)).public_send(color) }
   end
 
   if block_given?
     out.print("#{message}… ")
     yield
-    log(:green, "✔︎")
+    log(:green, '✔︎')
   else
     out.puts(message)
   end

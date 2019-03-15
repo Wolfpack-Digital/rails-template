@@ -1,1 +1,1 @@
-template "circleci/config.yml.tt", ".circleci/config.yml"
+template 'circleci/config.yml.tt', '.circleci/config.yml'

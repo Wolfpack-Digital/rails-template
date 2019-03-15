@@ -1,7 +1,7 @@
-comment_lines "config/environments/production.rb",
+comment_lines 'config/environments/production.rb',
               /config\.assets\.js_compressor = :uglifier/
 
-insert_into_file "config/environments/production.rb",
+insert_into_file 'config/environments/production.rb',
                  after: /# config\.assets\.css_compressor = :sass\n/ do
   <<-RUBY
 
@@ -12,11 +12,11 @@ insert_into_file "config/environments/production.rb",
   RUBY
 end
 
-uncomment_lines "config/environments/production.rb",
+uncomment_lines 'config/environments/production.rb',
                 /config\.action_dispatch\.x_sendfile_header = 'X-Accel-Redirect' # for NGINX/i
-uncomment_lines "config/environments/production.rb", /config\.force_ssl = true/
+uncomment_lines 'config/environments/production.rb', /config\.force_ssl = true/
 
-insert_into_file "config/environments/production.rb",
+insert_into_file 'config/environments/production.rb',
                  after: /# config\.action_mailer\.raise_deliv.*\n/ do
   <<-RUBY
 

@@ -69,7 +69,6 @@ The template will perform the following steps:
     * [dotenv][] – in place of the Rails `secrets.yml`
 * Utilities
     * [annotate][] – auto-generates schema documentation
-    * [autoprefixer-rails][] – automates cross-browser CSS compatibility
     * [awesome_print][] – try `ap` instead of `puts`
     * [better_errors][] – useful error pages with interactive stack traces
     * [guard][] – runs tests as you develop; mandatory for effective TDD

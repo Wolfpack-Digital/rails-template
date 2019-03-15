@@ -1,1 +1,1 @@
-empty_directory_with_keep_file "doc"
+empty_directory_with_keep_file 'doc'

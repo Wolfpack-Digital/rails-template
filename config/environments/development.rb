@@ -1,7 +1,7 @@
 mailer_regex = /config\.action_mailer\.raise_delivery_errors = false\n/
 
-comment_lines "config/environments/development.rb", mailer_regex
-insert_into_file "config/environments/development.rb", after: mailer_regex do
+comment_lines 'config/environments/development.rb', mailer_regex
+insert_into_file 'config/environments/development.rb', after: mailer_regex do
   <<-RUBY
 
   # Ensure mailer works in development.
@@ -12,7 +12,7 @@ insert_into_file "config/environments/development.rb", after: mailer_regex do
   RUBY
 end
 
-insert_into_file "config/environments/development.rb", before: /^end/ do
+insert_into_file 'config/environments/development.rb', before: /^end/ do
   <<-RUBY
 
   # Automatically inject JavaScript needed for LiveReload.
@@ -20,6 +20,6 @@ insert_into_file "config/environments/development.rb", before: /^end/ do
   RUBY
 end
 
-gsub_file "config/environments/development.rb",
+gsub_file 'config/environments/development.rb',
           "join('tmp/caching-dev.txt')",
           'join("tmp", "caching-dev.txt")'
