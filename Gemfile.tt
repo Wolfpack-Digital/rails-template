@@ -32,7 +32,8 @@ group :development do
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "bullet"
   gem "guard", ">= 2.2.2", require: false
-  gem "guard-livereload", require: falses
+  gem "guard-livereload", require: false
+  gem 'guard-rspec', require: false
   gem "letter_opener"
   gem "listen"<%= gemfile_requirement("listen") %>
   gem "overcommit", ">= 0.37.0", require: false
@@ -52,14 +53,11 @@ group :development do
   gem "xray-rails", ">= 0.1.18"
 end
 
-group :test do
+group :development, :test do
   gem "database_cleaner"
+  gem "factory_bot_rails", "~> 4.0"
+  gem "faker"
   gem "rspec-rails", "~> 3.8"
   gem "shoulda-matchers", ">= 3.0.1"
   gem "vcr"
-end
-
-group :development, :test do
-  gem "factory_bot_rails", "~> 4.0"
-  gem "faker"
 end

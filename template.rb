@@ -13,6 +13,7 @@ def apply_template!
 
   template 'example.env.tt'
   copy_file 'editorconfig', '.editorconfig'
+  copy_file 'rspec', '.rspec'
   copy_file 'gitignore', '.gitignore', force: true
   copy_file 'overcommit.yml', '.overcommit.yml'
   template 'ruby-version.tt', '.ruby-version', force: true
@@ -28,6 +29,8 @@ def apply_template!
   apply 'config/template.rb'
   apply 'doc/template.rb'
   apply 'lib/template.rb'
+
+  remove_dir 'test'
   apply 'spec/template.rb'
 
   git :init unless preexisting_git_repo?

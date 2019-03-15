@@ -10,7 +10,6 @@ AllCops:
     - config/initializers/version.rb
     - db/schema.rb
     - "node_modules/**/*"
-    - "bower_components/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
     - Gemfile
@@ -22,16 +21,16 @@ Layout/SpaceAroundEqualsInParameterDefault:
 
 Metrics/AbcSize:
   Exclude:
-    - "test/**/*"
+    - "spec/**/*"
 
 Metrics/BlockLength:
   Exclude:
     - "config/**/*"
-    - "test/**/*"
+    - "spec/**/*"
 
 Metrics/ClassLength:
   Exclude:
-    - "test/**/*"
+    - "spec/**/*"
 
 Metrics/LineLength:
   Exclude:
@@ -42,7 +41,7 @@ Metrics/MethodLength:
   Max: 12
   Exclude:
     - "db/migrate/*"
-    - "test/**/*"
+    - "spec/**/*"
 
 Naming/MemoizedInstanceVariableName:
   EnforcedStyleForLeadingUnderscores: optional
@@ -86,9 +85,6 @@ Style/FrozenStringLiteralComment:
 
 Style/NumericPredicate:
   Enabled: false
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
 
 Style/TrivialAccessors:
   AllowPredicates: true
