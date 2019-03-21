@@ -63,7 +63,6 @@ The template will perform the following steps:
 #### These gems are added to the standard Rails stack
 
 * Core
-    * [active_type][] – for building simple and effective form/service objects
     * [sidekiq][] – Redis-based job queue implementation for Active Job
 * Configuration
     * [dotenv][] – in place of the Rails `secrets.yml`
@@ -71,10 +70,9 @@ The template will perform the following steps:
     * [annotate][] – auto-generates schema documentation
     * [awesome_print][] – try `ap` instead of `puts`
     * [better_errors][] – useful error pages with interactive stack traces
-    * [guard][] – runs tests as you develop; mandatory for effective TDD
-    * [livereload][] – magically refreshes browsers whenever you save a file
+    * [letter_opener][] - open email in browser
+    * [overcommit][] - git hook manager
     * [rubocop][] – enforces Ruby code style
-    * [xray-rails][] – inspect view partials in the browser
 * Security
     * [brakeman][] and [bundler-audit][] – detect security vulnerabilities
 * Testing
@@ -103,19 +101,12 @@ Rails generators are very lightly documented; what you’ll find is that most of
 Inspired by [rails-template][]
 
 [Wolfpack-Digital]:http://wolfpack-digital.com
-[active_type]:https://github.com/makandra/active_type
 [sidekiq]:http://sidekiq.org
 [dotenv]:https://github.com/bkeepers/dotenv
 [annotate]:https://github.com/ctran/annotate_models
-[autoprefixer-rails]:https://github.com/ai/autoprefixer-rails
 [awesome_print]:https://github.com/michaeldv/awesome_print
 [better_errors]:https://github.com/charliesome/better_errors
-[guard]:https://github.com/guard/guard
-[livereload]:https://github.com/guard/guard-livereload
 [rubocop]:https://github.com/bbatsov/rubocop
-[xray-rails]:https://github.com/brentd/xray-rails
-[unicorn]:http://unicorn.bogomips.org
-[unicorn-worker-killer]:https://github.com/kzk/unicorn-worker-killer
 [brakeman]:https://github.com/presidentbeef/brakeman
 [bundler-audit]:https://github.com/rubysec/bundler-audit
 [shoulda]:https://github.com/thoughtbot/shoulda
@@ -124,3 +115,5 @@ Inspired by [rails-template][]
 [template.rb]: template.rb
 [thor]: https://github.com/erikhuda/thor
 [rails-template]: https://github.com/mattbrictson/rails-template
+[letter_opener]: https://github.com/ryanb/letter_opener
+[overcommit]: https://github.com/brigade/overcommit
