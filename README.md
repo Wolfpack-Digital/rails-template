@@ -43,8 +43,8 @@ rails new blog \
 ```
 rails new blog \
   -d postgresql \
+  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb \
   --api
-  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
 ```
 
 *Remember that options must go after the name of the application.* The only database supported by this template is `postgresql`.
