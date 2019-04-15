@@ -40,6 +40,13 @@ rails new blog \
   -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
 ```
 
+```
+rails new blog \
+  -d postgresql \
+  --api
+  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
+```
+
 *Remember that options must go after the name of the application.* The only database supported by this template is `postgresql`.
 
 If you’ve installed this template as your default (using `~/.railsrc` as described above), then all you have to do is run:
