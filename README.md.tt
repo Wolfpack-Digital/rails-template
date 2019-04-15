@@ -34,9 +34,8 @@ Run the `bin/setup` script. This script will:
 
 ### Run it!
 
-1. Run `bin/rake test` to make sure everything works.
-2. Run `bin/rake test:system` to run system (capybara) tests.
-3. Run `bin/rails s` and `bin/sidekiq` to start the app and Sidekiq; alternatively, start both at once with `heroku local`.
+1. Run `bin/rake spec` to make sure everything works.
+2. Run `bin/rails s` and `bin/sidekiq` to start the app and Sidekiq; alternatively, start both at once with `heroku local`.
 
 [rbenv]:https://github.com/sstephenson/rbenv
 [redis]:http://redis.io
