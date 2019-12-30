@@ -21,7 +21,7 @@ To make this the default Rails application template on your system, create a `~/
 
 ```
 -d postgresql
--m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
+-m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/5.2.x/template.rb
 ```
 
 ## Usage
@@ -37,13 +37,13 @@ To generate a Rails application using this template, pass the `-m` option to `ra
 ```
 rails new blog \
   -d postgresql \
-  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
+  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/5.2.x/template.rb
 ```
 
 ```
 rails new blog \
   -d postgresql \
-  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb \
+  -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/5.2.x/template.rb \
   --api
 ```
 
