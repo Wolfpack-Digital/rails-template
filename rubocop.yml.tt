@@ -18,6 +18,9 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Layout/IndentationConsistency:
+  EnforcedStyle: rails
+
 Metrics/AbcSize:
   Exclude:
     - "spec/**/*"
