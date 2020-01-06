@@ -20,6 +20,9 @@ def apply_template!
   copy_file 'simplecov', '.simplecov'
   copy_file 'lib/service_base.rb', 'lib/service_base.rb'
   copy_file 'app/workers/service_invocation_worker.rb', 'app/workers/service_invocation_worker.rb'
+  copy_file 'app/api/v1/base_controller.rb', 'app/api/v1/base_controller.rb'
+  copy_file 'app/controllers/concerns/api_error_handling.rb', 'app/controllers/concerns/api_error_handling.rb'
+  copy_file 'app/serializers/validation_errors_serializer.rb', 'app/serializers/validation_errors_serializer.rb'
 
   copy_file 'Procfile'
 
