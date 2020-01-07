@@ -8,14 +8,10 @@ gem 'bootsnap', ">= 1.2.0", require: false
 gem 'pg'<%= gemfile_requirement("pg") %>
 gem 'puma'<%= gemfile_requirement("puma") %>
 gem 'rails', "~> <%= Rails.version %>"
-gem 'sidekiq', ">= 4.2.0"
+gem 'sidekiq', ">= 5.2.0"
 
 # Configuration
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.1'
-
-# Views
-gem 'sass-rails'<%= gemfile_requirement("sass-rails") %>
-gem 'slim-rails', '~> 3.2'
 
 # Serialization
 gem 'active_model_serializers', '~> 0.10.9'
@@ -37,7 +33,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'bullet', '~> 5.9'
+  gem 'bullet', '~> 6.1'
   gem 'database_cleaner', '~> 1.7'
   gem 'dox', '~> 1.1', require: false
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.1'

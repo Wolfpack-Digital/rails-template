@@ -4,6 +4,9 @@
 
 Ruby on Rails application template used by [Wolfpack-Digital][].
 
+For older versions of Rails, use the following branches:
+* [Rails 5.2.x](https://github.com/Wolfpack-Digital/rails-template/tree/5.2.x)
+
 ## Requirements
 
 This template currently works with:
