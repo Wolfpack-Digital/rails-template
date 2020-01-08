@@ -39,9 +39,7 @@ module Service
 
     def set_parameters(params, defined_params)
       params.each do |param_name, param_value|
-        unless param_name.in?(defined_params)
-          raise ArgumentError, "[#{self.class}] Unexpected param: #{param_name}"
-        end
+        raise ArgumentError, "[#{self.class}] Unexpected param: #{param_name}" unless param_name.in?(defined_params)
 
         instance_variable_set("@#{param_name}", param_value)
       end

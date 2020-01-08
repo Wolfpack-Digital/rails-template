@@ -18,6 +18,9 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Layout/IndentationConsistency:
   EnforcedStyle: rails
 
@@ -26,6 +29,7 @@ Metrics/AbcSize:
     - "spec/**/*"
 
 Metrics/BlockLength:
+  Max: 100
   Exclude:
     - "config/**/*"
     - "spec/**/*"
@@ -35,6 +39,7 @@ Metrics/ClassLength:
     - "spec/**/*"
 
 Metrics/LineLength:
+  Max: 150
   Exclude:
     - "config/**/*"
     - "db/**/*"
