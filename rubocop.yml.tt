@@ -45,6 +45,7 @@ Metrics/LineLength:
     - "db/**/*"
 
 Metrics/MethodLength:
+  Max: 12
   Exclude:
     - "db/migrate/*"
     - "spec/**/*"
