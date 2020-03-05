@@ -1,7 +1,4 @@
-<%# The "application" layout is the default layout. It extends "base"  %>
-<%# to include things like header, footer, and alerts that are common  %>
-<%# to most (but not all) views.                                       %>
+<%= csrf_meta_tags %>
+<%= javascript_pack_tag "application" %>
 
 <%= yield %>
-
-<% parent_layout "base" %>
