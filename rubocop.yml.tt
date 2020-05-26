@@ -22,7 +22,7 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 Layout/IndentationConsistency:
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 
 Metrics/AbcSize:
   Exclude:
@@ -52,10 +52,3 @@ Metrics/MethodLength:
 
 Naming/PredicateName:
   Enabled: false
-
-Rails:
-  Enabled: true
-
-Rails/ApplicationRecord:
-  Exclude:
-    - "db/migrate/**"
