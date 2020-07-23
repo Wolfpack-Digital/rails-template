@@ -21,7 +21,7 @@ gem 'active_model_serializers', '~> 0.10.9'
 
 group :development do
   gem 'annotate', '~> 2.7', '>= 2.7.4'
-  gem 'awesome_print', '~> 1.8'
+  gem 'amazing_print'
   gem 'better_errors', '~> 2.5', '>= 2.5.1'
   gem 'brakeman', '~> 4.5', require: false
   gem 'bundler-audit', '~> 0.6.1', require: false

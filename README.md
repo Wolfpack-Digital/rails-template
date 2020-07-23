@@ -78,7 +78,7 @@ The template will perform the following steps:
     * [dotenv][] – in place of the Rails `secrets.yml`
 * Utilities
     * [annotate][] – auto-generates schema documentation
-    * [awesome_print][] – try `ap` instead of `puts`
+    * [amazing_print][] – try `ap` instead of `puts`
     * [better_errors][] – useful error pages with interactive stack traces
     * [letter_opener][] - open email in browser
     * [overcommit][] - git hook manager
@@ -114,7 +114,7 @@ Inspired by [rails-template][]
 [sidekiq]:http://sidekiq.org
 [dotenv]:https://github.com/bkeepers/dotenv
 [annotate]:https://github.com/ctran/annotate_models
-[awesome_print]:https://github.com/michaeldv/awesome_print
+[amazing_print]:https://github.com/amazing-print/amazing_print
 [better_errors]:https://github.com/charliesome/better_errors
 [rubocop]:https://github.com/bbatsov/rubocop
 [brakeman]:https://github.com/presidentbeef/brakeman
