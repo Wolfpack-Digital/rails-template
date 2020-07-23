@@ -18,7 +18,7 @@ def apply_template!
   copy_file 'overcommit.yml', '.overcommit.yml'
   template 'ruby-version.tt', '.ruby-version', force: true
   copy_file 'simplecov', '.simplecov'
-  copy_file 'lib/service_base.rb', 'lib/service_base.rb'
+  copy_file 'lib/service/base.rb', 'lib/service/base.rb'
   copy_file 'app/workers/service_invocation_worker.rb', 'app/workers/service_invocation_worker.rb'
   copy_file 'app/controllers/api/v1/base_controller.rb', 'app/controllers/api/v1/base_controller.rb'
   copy_file 'app/controllers/concerns/api_error_handling.rb', 'app/controllers/concerns/api_error_handling.rb'

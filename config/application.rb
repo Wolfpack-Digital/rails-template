@@ -1,6 +1,6 @@
 insert_into_file 'config/application.rb', before: '# Require the gems listed in Gemfile, including any gems' do
   <<-'RUBY'
-  require_relative '../lib/service_base.rb'
+  require_relative '../lib/service/base.rb'
   RUBY
 end
 
