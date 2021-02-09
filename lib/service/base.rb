@@ -19,11 +19,15 @@ module Service
     end
 
     def self.async_call(**params)
-      ServiceInvocationWorker.perform_async(to_s, params)
+      queue = params.delete(:queue) || :default
+
+      ServiceInvocationWorker.set(queue: queue).perform_async(to_s, params)
     end
 
     def self.scheduled_call(time, **params)
-      ServiceInvocationWorker.perform_in(time, to_s, params)
+      queue = params.delete(:queue) || :default
+
+      ServiceInvocationWorker.set(queue: queue).perform_in(time, to_s, params)
     end
 
     def initialize(**params)
