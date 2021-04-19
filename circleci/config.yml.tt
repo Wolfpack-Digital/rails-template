@@ -32,8 +32,8 @@ jobs:
           name: Install dependencies
           command: |
             gem install bundler --no-document --conservative
-            bundle update --bundler
-            bundle install --deployment --jobs=4 --retry=3 --path vendor/bundle
+            bundle config set deployment 'true'
+            bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
             bundle clean
 
       - save_cache:
