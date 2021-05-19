@@ -1,4 +1,6 @@
-RAILS_REQUIREMENT = '~> 6.0.0'.freeze
+# frozen_string_literal: true
+
+RAILS_REQUIREMENT = '~> 6.1.0'
 
 def apply_template!
   assert_minimum_rails_version
@@ -14,7 +16,7 @@ def apply_template!
   template 'example.env.tt'
   copy_file 'editorconfig', '.editorconfig'
   copy_file 'rspec', '.rspec'
-  copy_file "gitignore", ".gitignore", force: true
+  copy_file 'gitignore', '.gitignore', force: true
   copy_file 'overcommit.yml', '.overcommit.yml'
   template 'ruby-version.tt', '.ruby-version', force: true
   copy_file 'simplecov', '.simplecov'
@@ -111,9 +113,7 @@ def assert_valid_options
     next unless options.key?(key)
 
     actual = options[key]
-    unless actual == expected
-      raise Rails::Generators::Error, "Unsupported option: #{key}=#{actual}"
-    end
+    raise Rails::Generators::Error, "Unsupported option: #{key}=#{actual}" unless actual == expected
   end
 end
 
