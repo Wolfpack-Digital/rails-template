@@ -1,6 +1,19 @@
 # <%= app_name %>
 
 This is a Rails <%= Rails::VERSION::MAJOR %> app.
+## Application Links
+* [Development][]
+* [Production][]
+* [Staging][]
+
+## Branches for deployment
+|Branch         |ENV            |
+| ------------- |:-------------:|
+| develop       | [Development][]  |
+| master        |  [Staging][]     |
+| prod          |  [Production][]  |
+
+## Deployment process
 
 ## Documentation
 
@@ -30,8 +43,10 @@ Run the `bin/setup` script. This script will:
 * Check you have the required Ruby version
 * Install gems using Bundler
 * Create local copies of `.env` and `database.yml`
+* Get the `master.key` file in order to have the rails credentials
 * Create, migrate, and seed the database
 
+###### To edit the rails credentials you have to run `rails credentials:edit`
 ### Run it!
 
 1. Run `bin/rake spec` to make sure everything works.
@@ -40,3 +55,7 @@ Run the `bin/setup` script. This script will:
 [rbenv]:https://github.com/sstephenson/rbenv
 [redis]:http://redis.io
 [Homebrew]:http://brew.sh
+[Production]:http://google.com
+[Development]:http://google.com
+[Staging]:http://google.com
+###
