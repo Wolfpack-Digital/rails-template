@@ -11,7 +11,7 @@ For older versions of Rails, use the following branches:
 
 This template currently works with:
 
-* Rails 5.2.x
+* Rails 6.1.x
 * PostgreSQL
 
 If you need help setting up a Ruby development environment, check out [this guide](https://gorails.com/setup).

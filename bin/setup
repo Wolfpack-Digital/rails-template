@@ -10,9 +10,9 @@ def setup!
     copy 'example.env'
     copy 'config/database.example.yml'
     test_local_env_contains_required_keys
-    run  'bin/rake db:create:all'
-    run  'bin/rake db:migrate'
-    run  'bin/rake db:seed'
+    run  'bin/rails db:create:all'
+    run  'bin/rails db:migrate'
+    run  'bin/rails db:seed'
   end
 end
 
@@ -31,16 +31,12 @@ def test(opts)
   command, output = opts.first
 
   log(:yellow, "test #{command}") do
-    unless `#{command}`.include?(output)
-      die("#{command} does not include #{output}")
-    end
+    die("#{command} does not include #{output}") unless `#{command}`.include?(output)
   end
 end
 
 def ruby_version
-  @ruby_version ||= begin
-    IO.read('.ruby-version').strip
-  end
+  @ruby_version ||= IO.read('.ruby-version').strip
 end
 
 def run(command)
@@ -77,9 +73,7 @@ def test_local_env_contains_required_keys
 end
 
 def log(color, message, out = $stdout)
-  if defined?(HighLine::String)
-    message.sub!(/^(\S*)/) { HighLine::String.new(Regexp.last_match(1)).public_send(color) }
-  end
+  message.sub!(/^(\S*)/) { HighLine::String.new(Regexp.last_match(1)).public_send(color) } if defined?(HighLine::String)
 
   if block_given?
     out.print("#{message}… ")

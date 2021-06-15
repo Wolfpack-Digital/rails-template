@@ -1,4 +1,6 @@
-RAILS_REQUIREMENT = '~> 6.0.0'.freeze
+# frozen_string_literal: true
+
+RAILS_REQUIREMENT = '~> 6.1.0'
 
 def apply_template!
   assert_minimum_rails_version
@@ -14,7 +16,7 @@ def apply_template!
   template 'example.env.tt'
   copy_file 'editorconfig', '.editorconfig'
   copy_file 'rspec', '.rspec'
-  copy_file "gitignore", ".gitignore", force: true
+  copy_file 'gitignore', '.gitignore', force: true
   copy_file 'overcommit.yml', '.overcommit.yml'
   template 'ruby-version.tt', '.ruby-version', force: true
   copy_file 'simplecov', '.simplecov'
@@ -42,7 +44,7 @@ def apply_template!
 
   run_with_clean_bundler_env 'bin/setup'
   create_initial_migration
-  generate_spring_binstubs
+  generate_bundler_binstub
 
   binstubs = %w[
     annotate brakeman bundler bundler-audit rubocop sidekiq
@@ -111,9 +113,7 @@ def assert_valid_options
     next unless options.key?(key)
 
     actual = options[key]
-    unless actual == expected
-      raise Rails::Generators::Error, "Unsupported option: #{key}=#{actual}"
-    end
+    raise Rails::Generators::Error, "Unsupported option: #{key}=#{actual}" unless actual == expected
   end
 end
 
@@ -142,7 +142,7 @@ end
 
 def gemfile_requirement(name)
   @original_gemfile ||= IO.read('Gemfile')
-  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d\.\w'"]*)?.*$/, 1]
+  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d.\w'"]*)?.*$/, 1]
   req && req.tr("'", %(")).strip.sub(/^,\s*"/, ', "')
 end
 
@@ -187,7 +187,7 @@ def create_initial_migration
   return if Dir['db/migrate/**/*.rb'].any?
 
   run_with_clean_bundler_env 'bin/rails generate migration initial_migration'
-  run_with_clean_bundler_env 'bin/rake db:migrate'
+  run_with_clean_bundler_env 'bin/rails db:migrate'
 end
 
 apply_template!
