@@ -3,10 +3,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "<%= RUBY_VERSION %>"
 
+# Authentication and authorization.
+# Remove them if the app does not need the user and auth
+gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'doorkeeper'
+
 # Core
+gem 'bugsnag', <%= gemfile_requirement('bugsnag') %>
 gem 'bootsnap', ">= 1.7.5", require: false
 gem 'pg'<%= gemfile_requirement("pg") %>
 gem 'puma'<%= gemfile_requirement("puma") %>
+gem 'rack-cors'
 gem 'rails', "~> <%= Rails.version %>"
 gem 'sidekiq', ">= 6.2.1"
 <% if gemfile_requirement("webpacker") -%>
@@ -14,7 +21,10 @@ gem 'sidekiq', ">= 6.2.1"
 <% end -%>
 
 # Configuration
-gem 'dotenv-rails', '~> 2.7', '>= 2.7.1'
+gem 'dotenv-rails', <%= gemfile_requirement('bugsnag') %>
+
+# Documentation
+gem 'apipie-rails', <%= gemfile_requirement('bugsnag') %>
 
 # Serialization
 gem 'active_model_serializers', '~> 0.10.9'
@@ -32,6 +42,8 @@ group :development do
   gem 'listen'<%= gemfile_requirement("listen") %>
   gem 'overcommit', '~> 0.57.0', require: false
   gem 'rubocop', '~> 1.15', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rails', require: false
   gem 'spring', '~> 2.1', '>= 2.1.1'
 <% if gemfile_requirement("spring-watcher-listen") -%>
   gem 'spring-watcher-listen'<%= gemfile_requirement("spring-watcher-listen") %>
@@ -39,6 +51,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'byebug'
   gem 'bullet', '~> 6.1'
   gem 'database_cleaner', '~> 2.0'
   gem 'dox', '~> 2.1', require: false
@@ -48,4 +61,8 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 4.5', '>= 4.5.1'
   gem 'simplecov', '~> 0.21.2', require: false
   gem 'vcr', '~> 6.0'
+end
+
+group :test do
+  gem 'shoulda', '~> 4.0'
 end

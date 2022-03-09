@@ -22,6 +22,9 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/Documentation:
+  Enabled: false
+
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 

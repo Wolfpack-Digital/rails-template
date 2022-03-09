@@ -25,3 +25,13 @@ template 'config/environments/staging.rb.tt'
 
 route 'root "home#index"'
 route %(mount Sidekiq::Web => "/sidekiq" # monitoring console\n)
+route 'apipie'
+# CHECK IF THIS WORKING PROPERLY?
+route %(
+  namespace :api do
+    namespace :v1 do
+      resources :sessions, only: :create do
+        delete '/', action: :destroy, on: :collection
+      end
+    end
+  end)
