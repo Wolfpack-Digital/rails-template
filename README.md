@@ -110,6 +110,10 @@ Rails generators are very lightly documented; what you’ll find is that most of
 
 Inspired by [rails-template][]
 
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/Wolfpack-Digital/rails-template/blob/master/CONTRIBUTING.md)
+
 [Wolfpack-Digital]:http://wolfpack-digital.com
 [sidekiq]:http://sidekiq.org
 [dotenv]:https://github.com/bkeepers/dotenv
