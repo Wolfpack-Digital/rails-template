@@ -41,7 +41,6 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'listen'<%= gemfile_requirement("listen") %>
   gem 'overcommit', '~> 0.57.0', require: false
-  gem 'rails-erd'
   gem 'rubocop', '~> 1.15', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop-rails', require: false
