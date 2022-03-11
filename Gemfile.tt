@@ -3,11 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '<%= RUBY_VERSION %>'
 
-# Authentication and authorization.
-# Remove them if the app does not need the user and auth
-gem 'devise', '~> 4.8', '>= 4.8.1'
-gem 'doorkeeper'
-
 # Core
 gem 'bootsnap', ">= 1.7.5", require: false
 gem 'bugsnag'
