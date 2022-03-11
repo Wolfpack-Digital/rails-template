@@ -193,7 +193,25 @@ def create_initial_migration
 end
 
 def install_graphviz
-  run_with_clean_bundler_env('brew install graphviz')
+  if brew_installed?
+    run_with_clean_bundler_env('brew install graphviz')
+  elsif apt_installed?
+    run_with_clean_bundler_env('sudo apt install graphviz')
+  elsif yum_installed?
+    run_with_clean_bundler_env('sudo yum install graphviz')
+  end
+end
+
+def brew_installed?
+  system('which brew')
+end
+
+def apt_installed?
+  system('which apt')
+end
+
+def yum_installed?
+  system('which yum')
 end
 
 apply_template!
