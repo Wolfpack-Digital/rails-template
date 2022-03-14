@@ -6,6 +6,10 @@ module ApipieRecorderPatch
   end
 end
 
-class Apipie::Extractor::Recorder
-  prepend ApipieRecorderPatch
+module Apipie
+  module Extractor
+    class Recorder
+      prepend ApipieRecorderPatch
+    end
+  end
 end
