@@ -8,10 +8,6 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validate :password_complexity
 
-  enum role: {
-
-  }
-
   class << self
     def authenticate(email, password)
       user = User.find_for_authentication(email: email)
