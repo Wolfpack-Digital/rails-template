@@ -5,7 +5,6 @@ Apipie.configure do |config|
   config.doc_base_url            = '/apipie'
   config.translate               = false
   config.api_controllers_matcher = Rails.root.join('app', 'controllers', 'api', '**', '*.rb')
-  config.translate               = false
   config.show_all_examples       = true
   config.namespaced_resources    = true
 
