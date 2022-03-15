@@ -6,6 +6,7 @@ end
 # app
 copy_file 'app/serializers/user_serializer.rb'
 copy_file 'app/controllers/api/v1/sessions_controller.rb'
+copy_file 'app/controllers/api/v1/oauth_tokens_controller.rb'
 copy_file 'app/models/user.rb'
 
 # config
@@ -31,6 +32,7 @@ end
 
 # docs
 copy_file 'doc/api/v1/sessions_controller_doc.rb'
+copy_file 'doc/api/v1/oauth_tokens_controller_doc.rb'
 
 # specs
 copy_file 'spec/requests/api/v1/sessions_controller_spec.rb'

@@ -1,3 +1,7 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
@@ -15,9 +19,6 @@ AllCops:
     - "vendor/**/*"
     - Gemfile
     - Rakefile
-
-Style/Documentation:
-  Enabled: false
 
 Style/ClassAndModuleChildren:
   Enabled: false
