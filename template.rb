@@ -7,6 +7,7 @@ def apply_template!
   assert_valid_options
   assert_postgresql
   add_template_repository_to_source_path
+  install_graphviz
 
   template 'Gemfile.tt', force: true
 
@@ -20,6 +21,7 @@ def apply_template!
   copy_file 'overcommit.yml', '.overcommit.yml'
   template 'ruby-version.tt', '.ruby-version', force: true
   copy_file 'simplecov', '.simplecov'
+  copy_file '.erdconfig'
   copy_file 'lib/service/base.rb', 'lib/service/base.rb'
   copy_file 'app/workers/service_invocation_worker.rb', 'app/workers/service_invocation_worker.rb'
   copy_file 'app/controllers/api/v1/base_controller.rb', 'app/controllers/api/v1/base_controller.rb'
@@ -188,6 +190,28 @@ def create_initial_migration
 
   run_with_clean_bundler_env 'bin/rails generate migration initial_migration'
   run_with_clean_bundler_env 'bin/rails db:migrate'
+end
+
+def install_graphviz
+  if brew_installed?
+    run_with_clean_bundler_env('brew install graphviz')
+  elsif apt_installed?
+    run_with_clean_bundler_env('sudo apt install graphviz')
+  elsif yum_installed?
+    run_with_clean_bundler_env('sudo yum install graphviz')
+  end
+end
+
+def brew_installed?
+  system('which brew')
+end
+
+def apt_installed?
+  system('which apt')
+end
+
+def yum_installed?
+  system('which yum')
 end
 
 apply_template!
