@@ -10,10 +10,6 @@ copy_file 'config/initializers/rotate_log.rb'
 copy_file 'config/initializers/version.rb'
 copy_file 'config/initializers/apipie.rb'
 template 'config/initializers/sidekiq.rb.tt'
-copy_file 'config/initializers/apipie.rb'
-gsub_file 'config/initializers/apipie.rb', /AppName/ do
-  app_name.titleize
-end
 
 gsub_file 'config/initializers/filter_parameter_logging.rb', /\[:password\]/ do
   '%w[password secret session cookie csrf]'

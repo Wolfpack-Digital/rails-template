@@ -27,7 +27,6 @@ def apply_template!
   apply 'bin/template.rb'
   apply 'circleci/template.rb'
   apply 'config/template.rb'
-  apply 'doc/template.rb'
   apply 'lib/template.rb'
   apply 'spec/template.rb'
   apply 'auth_template.rb' if include_auth_functionality
