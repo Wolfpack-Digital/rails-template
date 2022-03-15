@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserSerializer < ApplicationSerializer
-  attributes :id, :first_name, :last_name, :email, :phone_number
+  attributes :id, :first_name, :last_name, :email
   attribute :message, if: :message
 
   has_one :tokens, if: :with_auth_tokens?
