@@ -181,7 +181,12 @@ end
 def create_initial_migration
   return if Dir['db/migrate/**/*.rb'].any?
 
-  run_with_clean_bundler_env 'bin/rails generate migration initial_migration'
+  now = Time.now.strftime('%Y%m%d%H%M%S').to_i
+  migration_folder = 'db/migrate/'
+
+  copy_file 'db/migrate/create_users.rb', "#{migration_folder}#{now}_create_users.rb"
+  copy_file 'db/migrate/add_devise_to_users.rb', "#{migration_folder}#{now + 1}_add_devise_to_users.rb"
+  copy_file 'db/migrate/add_doorkeeper_to_users.rb', "#{migration_folder}#{now + 2}_add_doorkeeper_to_users.rb"
   run_with_clean_bundler_env 'bin/rails db:migrate'
 end
 
