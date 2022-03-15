@@ -1,1 +1,1 @@
-empty_directory_with_keep_file 'doc'
+copy_file 'doc/api/v1/apipie_definitions.rb'
