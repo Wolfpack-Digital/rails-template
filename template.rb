@@ -21,6 +21,7 @@ def apply_template!
   copy_file 'gitignore', '.gitignore', force: true
   copy_file 'overcommit.yml', '.overcommit.yml'
   copy_file 'simplecov', '.simplecov'
+  copy_file '.erdconfig'
   copy_file 'Procfile'
 
   apply 'Rakefile.rb'
