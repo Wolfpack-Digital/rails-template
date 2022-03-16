@@ -18,7 +18,7 @@ module ApiErrorHandling
 
       render json: {
         message: 'Validation Failed',
-        errors: ValidationErrorsSerializer.new(exception.record).serialize
+        **ValidationErrorsSerializer.new(exception.record).serialize
       }, status: :unprocessable_entity
     end
 
