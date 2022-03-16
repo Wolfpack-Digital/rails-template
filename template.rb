@@ -7,6 +7,7 @@ def apply_template!
   assert_valid_options
   assert_postgresql
   add_template_repository_to_source_path
+  install_graphviz
 
   template 'Gemfile.tt', force: true
   template 'README.md.tt', force: true
@@ -190,6 +191,28 @@ end
 
 def app_name
   @app_name ||= @app_path.gsub(/_-/, ' ').titleize
+end
+
+def install_graphviz
+  if brew_installed?
+    run_with_clean_bundler_env('brew install graphviz')
+  elsif apt_installed?
+    run_with_clean_bundler_env('sudo apt install graphviz')
+  elsif yum_installed?
+    run_with_clean_bundler_env('sudo yum install graphviz')
+  end
+end
+
+def brew_installed?
+  system('which brew')
+end
+
+def apt_installed?
+  system('which apt')
+end
+
+def yum_installed?
+  system('which yum')
 end
 
 apply_template!
