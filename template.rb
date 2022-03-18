@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RAILS_REQUIREMENT = '~> 6.1.0'
+RAILS_REQUIREMENT = '~> 7.0.2'
 
 def apply_template!
   assert_minimum_rails_version
