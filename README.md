@@ -41,12 +41,14 @@ To generate a Rails application using this template, pass the `-m` option to `ra
 rails new blog \
   -d postgresql \
   -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
+  -j webpack
 ```
 
 ```
 rails new blog \
   -d postgresql \
   -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb \
+  -j webpack
   --api
 ```
 
