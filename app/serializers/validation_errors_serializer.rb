@@ -8,6 +8,14 @@ class ValidationErrorsSerializer
   end
 
   def serialize
+    { errors: errors_full_messages, errors_details: errors_details }
+  end
+
+  def errors_full_messages
+    record.errors.full_messages
+  end
+
+  def errors_details
     record.errors.details.map do |field, details|
       details.map do |error_details|
         {

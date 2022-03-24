@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'support/request_spec_helper'
 require 'support/apipie_helper'
@@ -18,7 +20,13 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.include FactoryBot::Syntax::Methods
   config.include RequestSpecHelper, type: :request
+
+  config.after do
+    Faker::UniqueGenerator.clear
+  end
 end
 
 Shoulda::Matchers.configure do |config|

@@ -10,24 +10,18 @@ def apply_template!
   install_graphviz
 
   template 'Gemfile.tt', force: true
-
   template 'README.md.tt', force: true
+  template 'example.env.tt'
+  template 'ruby-version.tt', '.ruby-version', force: true
+
   remove_file 'README.rdoc'
 
-  template 'example.env.tt'
   copy_file 'editorconfig', '.editorconfig'
   copy_file 'rspec', '.rspec'
   copy_file 'gitignore', '.gitignore', force: true
   copy_file 'overcommit.yml', '.overcommit.yml'
-  template 'ruby-version.tt', '.ruby-version', force: true
   copy_file 'simplecov', '.simplecov'
   copy_file '.erdconfig'
-  copy_file 'lib/service/base.rb', 'lib/service/base.rb'
-  copy_file 'app/workers/service_invocation_worker.rb', 'app/workers/service_invocation_worker.rb'
-  copy_file 'app/controllers/api/v1/base_controller.rb', 'app/controllers/api/v1/base_controller.rb'
-  copy_file 'app/controllers/concerns/api_error_handling.rb', 'app/controllers/concerns/api_error_handling.rb'
-  copy_file 'app/serializers/validation_errors_serializer.rb', 'app/serializers/validation_errors_serializer.rb'
-
   copy_file 'Procfile'
 
   apply 'Rakefile.rb'
@@ -37,15 +31,15 @@ def apply_template!
   apply 'config/template.rb'
   apply 'doc/template.rb'
   apply 'lib/template.rb'
+  apply 'spec/template.rb'
+  apply 'auth_template.rb' if include_auth_functionality
 
   remove_dir 'test'
-  apply 'spec/template.rb'
 
   git :init unless preexisting_git_repo?
   empty_directory '.git/safe'
 
   run_with_clean_bundler_env 'bin/setup'
-  create_initial_migration
   generate_bundler_binstub
 
   binstubs = %w[
@@ -142,6 +136,17 @@ def staging_hostname
     ask_with_default('Staging hostname?', :blue, 'staging.example.com')
 end
 
+def include_auth_functionality
+  return @include_auth_functionality if defined?(@include_auth_functionality)
+
+  @include_auth_functionality =
+    %w[yes y].include?(ask_with_default('Include user authentiaction? Y/n', :red, 'Y').downcase)
+end
+
+def app_type
+  include_auth_functionality ? '_with_auth' : ''
+end
+
 def gemfile_requirement(name)
   @original_gemfile ||= IO.read('Gemfile')
   req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d.\w'"]*)?.*$/, 1]
@@ -175,21 +180,18 @@ def run_with_clean_bundler_env(cmd)
             else
               run(cmd)
             end
-  unless success
-    puts "Command failed, exiting: #{cmd}"
-    exit(1)
-  end
+  return if success
+
+  puts "Command failed, exiting: #{cmd}"
+  exit(1)
 end
 
 def run_rubocop_autocorrections
-  run_with_clean_bundler_env 'bin/rubocop -a --fail-level A > /dev/null || true'
+  run_with_clean_bundler_env 'bin/rubocop -A --fail-level A > /dev/null || true'
 end
 
-def create_initial_migration
-  return if Dir['db/migrate/**/*.rb'].any?
-
-  run_with_clean_bundler_env 'bin/rails generate migration initial_migration'
-  run_with_clean_bundler_env 'bin/rails db:migrate'
+def app_name
+  @app_name ||= @app_path.gsub(/_-/, ' ').titleize
 end
 
 def install_graphviz

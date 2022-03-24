@@ -16,10 +16,10 @@ AllCops:
     - Gemfile
     - Rakefile
 
-Style/Documentation:
+Style/ClassAndModuleChildren:
   Enabled: false
 
-Style/ClassAndModuleChildren:
+Style/Documentation:
   Enabled: false
 
 Layout/IndentationConsistency:

@@ -2,6 +2,7 @@
 
 module RequestSpecHelper
   def response_json
-    JSON.parse(response.body)
+    body = JSON.parse(response.body, symbolize_names: true)
+    body.try(:with_indifferent_access) || body
   end
 end
