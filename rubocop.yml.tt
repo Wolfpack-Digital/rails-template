@@ -13,6 +13,7 @@ AllCops:
     - "node_modules/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
+    - "lib/generators/*"
     - Gemfile
     - Rakefile
 
