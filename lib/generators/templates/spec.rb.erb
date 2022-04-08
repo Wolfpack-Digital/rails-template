@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::<%= class_name %>Controller, type: :request do
+RSpec.describe Api::<%= @version.capitalize %>::<%= class_name %>Controller, type: :request do
     <% if @methods.match?('i')%>
     describe 'GET <%= @formatted_route %>' do
     end

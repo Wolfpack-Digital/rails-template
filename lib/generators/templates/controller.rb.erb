@@ -6,7 +6,7 @@ module Api
       module <%= path.capitalize %>
     <% end %>
     class <%= file_name.titleize %>Controller < BaseController
-      include Api::V1::<%= class_name %>ControllerDoc
+      include Api::<%= @version.capitalize %>::<%= class_name %>ControllerDoc
     <% for action in @actions %>
       def <%= action %>; end
     <% end %>
