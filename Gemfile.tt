@@ -12,7 +12,11 @@ gem 'rack-cors'
 gem 'rails', "~> <%= Rails.version %>"
 gem 'sidekiq', ">= 6.2.1"
 <% if !@options['api'] %>
+gem 'webpacker'
 gem "sprockets-rails"
+gem "jsbundling-rails"
+gem "turbo-rails"
+gem 'stimulus-rails'
 <% end -%>
 
 # Configuration
@@ -26,6 +30,7 @@ gem 'apipie-rails', '~> 0.5.19'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem "net-http"
 
 group :development do
   gem 'annotate', '~> 3.1', '>= 3.1.1'
