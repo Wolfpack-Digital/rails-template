@@ -45,7 +45,7 @@ This generator creates all 3 files required for a new api controller(controller,
 
 `rails g api_controller [options][file_name]`
 
- * `file_name` - is required(e.g for test and generates test_controller.rb)
+ * `file_name` - is required (e.g for test and generates test_controller.rb). It can be also a path to the file like authentication/passwords
  * `options` - is optional
 
 Options to use:
