@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api
-  module V1
+  module <%= @version.capitalize %>
     <% for path in class_path %>
       module <%= path.capitalize %>
     <% end %>
