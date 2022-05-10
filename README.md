@@ -11,7 +11,7 @@ For older versions of Rails, use the following branches:
 
 This template currently works with:
 
-* Rails 6.1.x
+* Rails 7.0.x
 * PostgreSQL
 
 If you need help setting up a Ruby development environment, check out [this guide](https://gorails.com/setup).
@@ -41,14 +41,12 @@ To generate a Rails application using this template, pass the `-m` option to `ra
 rails new blog \
   -d postgresql \
   -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb
-  -j webpack
 ```
 
 ```
 rails new blog \
   -d postgresql \
   -m https://raw.githubusercontent.com/Wolfpack-Digital/rails-template/master/template.rb \
-  -j webpack
   --api
 ```
 
