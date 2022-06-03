@@ -16,7 +16,9 @@ class ApiControllerGenerator < Rails::Generators::NamedBase
   }.freeze
 
   def generate_api_controller
-    @actions = methods.split('').map { |method| ACTIONS[method.to_sym] }
+    @actions = methods.split('')
+                      .map { |method| ACTIONS[method.to_sym] }
+                      .reject(:nil?)
     formatted_route_with_id
 
     template 'controller.rb.erb', "app/controllers/api/#{formatted_route}_controller.rb"
