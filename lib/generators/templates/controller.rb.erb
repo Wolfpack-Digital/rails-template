@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+module Api
+  module <%= @version.capitalize %>
+    <% for path in class_path %>
+      module <%= path.capitalize %>
+    <% end %>
+    class <%= file_name.titleize %>Controller < BaseController
+      include Api::<%= @version.capitalize %>::<%= class_name %>ControllerDoc
+    <% for action in @actions %>
+      def <%= action %>; end
+    <% end %>
+    end
+    <% for path in class_path %>
+      end
+    <% end %>
+  end
+end

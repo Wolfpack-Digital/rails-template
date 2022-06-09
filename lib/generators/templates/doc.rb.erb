@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+
+module Api
+  module <%= @version.capitalize %>
+    <% for path in class_path %>
+      module <%= path.capitalize %>
+    <% end %>
+    module <%= file_name.titleize %>ControllerDoc
+      extend Apipie::DSL::Concern
+      
+      <% if methods.match?('i') %>
+        api :GET, '<%= @formatted_route %>', 'Get all resources'
+        def index; end
+      <% end %>
+      
+      <% if methods.match?('s') %>
+        api :GET, '<%= @formatted_route_with_id %>', 'Get one resource'
+        def show; end
+      <% end %>
+
+      <% if methods.match?('c') %>
+        api :POST, '<%= @formatted_route %>', 'Create a resource'
+        def create; end
+      <% end %>
+
+      <% if methods.match?('u') %>
+        api :PATCH, '<%= @formatted_route_with_id %>', 'Update a resource'
+        def update; end
+      <% end %>
+
+      <% if methods.match?('d') %>
+        api :DELETE, '<%= @formatted_route_with_id %>', 'Destroy one resource'
+        def destroy; end
+      <% end %>
+    end
+    <% for path in class_path %>
+      end
+    <% end %>
+  end
+end

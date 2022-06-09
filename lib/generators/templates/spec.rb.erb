@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Api::<%= @version.capitalize %>::<%= class_name %>Controller, type: :request do
+    <% if @methods.match?('i')%>
+    describe 'GET <%= @formatted_route %>' do
+    end
+  <% end %>
+
+  <% if @methods.match?('s')%>
+    describe 'GET <%= @formatted_route_with_id %>' do
+    end
+  <% end %>
+
+  <% if @methods.match?('c')%>
+    describe 'POST <%= @formatted_route %>' do
+    end
+  <% end %>
+
+  <% if @methods.match?('u')%>
+    describe 'PATCH <%= @formatted_route_with_id %>' do
+    end
+  <% end %>
+
+  <% if @methods.match?('d')%>
+    describe "DELETE <%= @formatted_route_with_id %>" do
+    end
+  <% end %>
+end

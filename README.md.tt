@@ -37,6 +37,23 @@ Run the `bin/setup` script. This script will:
 1. Run `bin/rake spec` to make sure everything works.
 2. Run `bin/rails s` and `bin/sidekiq` to start the app and Sidekiq; alternatively, start both at once with `heroku local`.
 
+### Api controllers generator
+
+This generator creates all 3 files required for a new api controller(controller, documentation and tests)
+
+#### Usage
+
+`rails g api_controller [file_name][options]`
+
+ * `file_name` - is required (e.g for test and generates test_controller.rb). It can be also a path to the file like authentication/passwords
+ * `options` - is optional
+
+Options to use:
+ * `--version` - Version of api(e.g `--version v2`) default is v1
+ * `--methods` - What methods will this controller contain
+    * i = index, s = show, c = create, u = update, d = destroy
+    * (e.g `--methods i` will add index method)
+
 [rbenv]:https://github.com/sstephenson/rbenv
 [redis]:http://redis.io
 [Homebrew]:http://brew.sh
