@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RAILS_REQUIREMENT = '~> 6.1.0'
+RAILS_REQUIREMENT = '~> 7.0.2'
 
 def apply_template!
   assert_minimum_rails_version
@@ -149,7 +149,7 @@ end
 
 def gemfile_requirement(name)
   @original_gemfile ||= IO.read('Gemfile')
-  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d.\w'"]*)?.*$/, 1]
+  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,?[><~= \t\d.\w'"]*)?.*$/, 1]
   req && req.tr("'", %(")).strip.sub(/^,\s*"/, ', "')
 end
 
