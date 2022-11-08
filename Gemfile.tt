@@ -46,7 +46,7 @@ group :development do
   gem 'annotate', '~> 3.1', '>= 3.1.1'
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem 'brakeman', '~> 5.0', require: false
-  gem 'bundler-audit', '~> 0.8.0', require: false
+  gem 'bundler-audit', '~> 0.9.1', require: false
   gem 'letter_opener', '~> 1.7'
   gem 'listen'<%= gemfile_requirement('listen') %>
   gem 'overcommit', '~> 0.58.0', require: false
