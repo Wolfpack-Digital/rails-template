@@ -5,7 +5,8 @@ if Rails.env.development?
     'exclude_controllers' => 'true',
     'exclude_helpers' => 'true',
     'exclude_tests' => 'true',
-    'sort' => 'true'
+    'sort' => 'true',
+    'models' => 'true'
   )
 
   # Annotate models
