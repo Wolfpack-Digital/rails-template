@@ -27,7 +27,6 @@ def apply_template!
   apply 'Rakefile.rb'
   apply 'app/template.rb'
   apply 'bin/template.rb'
-  apply 'circleci/template.rb'
   apply 'config/template.rb'
   apply 'doc/template.rb'
   apply 'lib/template.rb'
