@@ -5,7 +5,6 @@ ruby '<%= RUBY_VERSION %>'
 
 # Core
 gem 'bootsnap', '>= 1.7.5', require: false
-gem 'bugsnag'
 gem 'pg'<%= gemfile_requirement('pg') %>
 gem 'puma'<%= gemfile_requirement('puma') %>
 gem 'rack-cors'
