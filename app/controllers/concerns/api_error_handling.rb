@@ -5,8 +5,6 @@ module ApiErrorHandling
 
   included do
     rescue_from ActiveRecord::RecordNotFound do |exception|
-      Bugsnag.notify(exception)
-
       render json: {
         message: "#{exception.model} with id=#{exception.id} not found",
         code: 'not_found'
@@ -14,8 +12,6 @@ module ApiErrorHandling
     end
 
     rescue_from ActiveRecord::RecordInvalid do |exception|
-      Bugsnag.notify(exception)
-
       render json: {
         message: 'Validation Failed',
         **ValidationErrorsSerializer.new(exception.record).serialize
@@ -23,8 +19,6 @@ module ApiErrorHandling
     end
 
     rescue_from ActionController::ParameterMissing do |exception|
-      Bugsnag.notify(exception)
-
       render json: {
         message: "Parameter missing: #{exception.param}",
         code: 'param_missing'
@@ -32,8 +26,6 @@ module ApiErrorHandling
     end
 
     rescue_from ActiveModel::UnknownAttributeError do |error|
-      Bugsnag.notify(error)
-
       render json: {
         message: error.message,
         code: :unprocessable_entity
