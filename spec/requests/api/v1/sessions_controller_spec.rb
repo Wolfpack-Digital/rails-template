@@ -21,10 +21,11 @@ RSpec.describe Api::V1::SessionsController, type: :request do
       context 'when user confirmation is required' do
         let(:user) { create(:user, :unconfirmed) }
         let(:expected_response) do
-          UserSerializer.new(user, with_message: I18n.t('devise.failure.unconfirmed')).to_json
+          UserSerializer.new(user, { params: { with_message: I18n.t('devise.failure.unconfirmed') } }).to_json
         end
 
-        it 'responds with user info and message to confirm account', :show_in_doc, doc_title: 'Unconfirmed account successful sign in' do
+        it 'responds with user info and message to confirm account', :show_in_doc,
+           doc_title: 'Unconfirmed account successful sign in' do
           perform_request
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response_json[:message]).to eq('Error')
@@ -34,13 +35,11 @@ RSpec.describe Api::V1::SessionsController, type: :request do
 
       context 'when user confirmation is completed' do
         let(:expected_response) do
-          UserSerializer.new(user, with_auth_tokens: true).to_json
+          UserSerializer.new(user, { params: { with_tokens: true } }).to_json
         end
 
         before do
-          # rubocop:disable RSpec/AnyInstance
           allow_any_instance_of(User).to receive(:tokens).and_return(tokens)
-          # rubocop:enable RSpec/AnyInstance
         end
 
         it 'responds with user info and auth tokens', :show_in_doc, doc_title: 'Successful sign in' do
@@ -96,7 +95,9 @@ RSpec.describe Api::V1::SessionsController, type: :request do
   end
 
   describe 'DELETE /api/v1/sessions' do
-    subject(:perform_request) { delete api_v1_sessions_path, headers: { **common_headers, **auth_headers(token.token) } }
+    subject(:perform_request) do
+      delete api_v1_sessions_path, headers: { **common_headers, **auth_headers(token.token) }
+    end
 
     let(:user) { create(:user) }
     let(:token) { create(:oauth_access_token, resource_owner_id: user.id) }

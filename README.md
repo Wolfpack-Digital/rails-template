@@ -8,12 +8,13 @@ For older versions of Rails, use the following branches:
 
 * [Rails 5.2.x](https://github.com/Wolfpack-Digital/rails-template/tree/5.2.x)
 * [Rails 6.1.x](https://github.com/Wolfpack-Digital/rails-template/tree/6.1.x)
+* [Rails 7.0.x](https://github.com/Wolfpack-Digital/rails-template/tree/7.0.x)
 
 ## Requirements
 
 This template currently works with:
 
-* Rails 7.0.x
+* Rails 8.0.x
 * PostgreSQL
 
 If you need help setting up a Ruby development environment, check out [this guide](https://gorails.com/setup).
@@ -75,11 +76,11 @@ The template will perform the following steps:
 #### These gems are added to the standard Rails stack
 
 * Core
-    * [sidekiq][] – Redis-based job queue implementation for Active Job
+    * [solidqueue][] - db backed rails jobs processor
 * Configuration
     * [dotenv][] – in place of the Rails `secrets.yml`
 * Utilities
-    * [annotate][] – auto-generates schema documentation
+    * [annotaterb][] – auto-generates schema documentation
     * [amazing_print][] – try `ap` instead of `puts`
     * [better_errors][] – useful error pages with interactive stack traces
     * [letter_opener][] - open email in browser
@@ -117,7 +118,6 @@ Inspired by [rails-template][]
 See [CONTRIBUTING.md](https://github.com/Wolfpack-Digital/rails-template/blob/master/CONTRIBUTING.md)
 
 [Wolfpack-Digital]:http://wolfpack-digital.com
-[sidekiq]:http://sidekiq.org
 [dotenv]:https://github.com/bkeepers/dotenv
 [annotate]:https://github.com/ctran/annotate_models
 [amazing_print]:https://github.com/amazing-print/amazing_print

@@ -21,9 +21,7 @@ module RequestSpecHelper
   end
 
   def stub_current_user(user)
-    # rubocop:disable RSpec/AnyInstance
     allow_any_instance_of(Api::V1::BaseController).to receive(:doorkeeper_authorize!)
     allow_any_instance_of(Api::V1::BaseController).to receive(:current_user).and_return(user)
-    # rubocop:enable RSpec/AnyInstance
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RAILS_REQUIREMENT = '~> 7.0.2'
+RAILS_REQUIREMENT = '~> 8.0.2'
 
 def apply_template!
   assert_minimum_rails_version
@@ -42,7 +42,7 @@ def apply_template!
   generate_bundler_binstub
 
   binstubs = %w[
-    annotate brakeman bundler bundler-audit rubocop sidekiq
+    annotaterb brakeman bundler bundler-audit rubocop
   ]
 
   run_with_clean_bundler_env "bundle binstubs #{binstubs.join(' ')} --force"
@@ -50,14 +50,14 @@ def apply_template!
   template 'rubocop.yml.tt', '.rubocop.yml'
   run_rubocop_autocorrections
 
-  unless any_local_git_commits?
-    git add: '-A .'
-    git commit: "-n -m 'Set up project'"
-    if git_repo_specified?
-      git remote: "add origin #{git_repo_url.shellescape}"
-      git push: '-u origin --all'
-    end
-  end
+  return if any_local_git_commits?
+
+  git add: '-A .'
+  git commit: "-n -m 'Set up project'"
+  return unless git_repo_specified?
+
+  git remote: "add origin #{git_repo_url.shellescape}"
+  git push: '-u origin --all'
 end
 
 require 'fileutils'
@@ -165,7 +165,7 @@ def git_repo_specified?
 end
 
 def preexisting_git_repo?
-  @preexisting_git_repo ||= (File.exist?('.git') || :nope)
+  @preexisting_git_repo ||= File.exist?('.git') || :nope
   @preexisting_git_repo == true
 end
 
