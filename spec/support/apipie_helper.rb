@@ -2,7 +2,8 @@
 
 module ApipieRecorderPatch
   def record
-    super.try(:merge, title: RSpec.current_example.metadata[:doc_title] || RSpec.current_example.example_group.description)
+    super.try(:merge,
+              title: RSpec.current_example.metadata[:doc_title] || RSpec.current_example.example_group.description)
   end
 end
 

@@ -1,3 +1,3 @@
 web:     bundle exec puma -C config/puma.rb
-worker:  bundle exec sidekiq -C config/sidekiq.yml
+worker:  bin/rails solid_queue:start
 release: bundle exec rails db:migrate db:seed

@@ -1,5 +1,5 @@
 copy_file 'lib/service/base.rb'
-copy_file 'app/workers/service_invocation_worker.rb'
+copy_file 'app/jobs/service_invocation_job.rb'
 copy_file "app/controllers/api/v1/base_controller#{app_type}.rb", 'app/controllers/api/v1/base_controller.rb'
 copy_file 'app/controllers/concerns/api_error_handling.rb'
 copy_file 'app/serializers/validation_errors_serializer.rb'

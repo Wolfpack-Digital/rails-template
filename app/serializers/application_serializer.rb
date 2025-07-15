@@ -1,4 +1,7 @@
-# frozen_string_literal: true
+class ApplicationSerializer
+  include Alba::Resource
 
-class ApplicationSerializer < ActiveModel::Serializer
+  def current_user
+    params.fetch(:current_user, nil)
+  end
 end
